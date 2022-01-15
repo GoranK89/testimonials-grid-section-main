@@ -1,0 +1,195 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Color variables */
+:root {
+  /* Primary */
+  --ModerateViolet: hsl(263, 55%, 52%);
+  --VeryDarkGrayishBlue: hsl(217, 19%, 35%);
+  --VeryDarkBlackishBlue: hsl(219, 29%, 14%);
+  --White: hsl(0, 0%, 100%);
+  /* Neutral */
+  --LightGray: hsl(0, 0%, 81%);
+  --LightGrayishBlue: hsl(210, 46%, 95%);
+
+  /* Note for text colors:
+1. "Verified Graduate" has the same color as the person's name 
+    with 50% opacity
+2. Review paragraphs inside the quotations have the same color as well,
+   but are at 70% opacity */
+}
+
+/* GENERAL STYLE */
+body {
+  font-size: 13px;
+  line-height: 20px;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  padding: 100px;
+  margin: 100px 200px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /*4 columns to double 2 cells size*/
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 30px;
+  background-color: var(--LightGray);
+}
+
+article {
+  /* used flex to use for gap purposes */
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  border-radius: 10px;
+  padding: 30px; /* because of the global "box-sizing: border-box;" reset, padding is inward */
+}
+
+h2 {
+  color: var(--White);
+}
+
+.quoted-text {
+  font-size: 1.2em;
+  color: var(--LightGray);
+  opacity: 0.7;
+}
+
+/* FIRST CONTAINER (the most complicated one) */
+article:first-child {
+  background-color: var(--ModerateViolet);
+  grid-column: 1 / 3;
+  position: relative; /* for the absolute positon of the h2 and .quote-img */
+  font-size: 1.2em;
+}
+
+article:first-child .profile-pic {
+  border: 2px solid rgb(255, 255, 255, 0.3);
+  box-sizing: content-box;
+}
+
+#absolute-text {
+  position: absolute;
+  top: 75px;
+  right: 30px;
+  left: 30px;
+  color: var(--White);
+}
+
+#custom-paragraph {
+  margin-top: 104px;
+  color: var(--LightGray);
+  opacity: 0.7;
+}
+
+.quote-img {
+  position: absolute;
+  top: 0;
+  right: 70px;
+}
+
+/* SECOND CONTAINER */
+article:nth-child(2) {
+  background-color: var(--VeryDarkGrayishBlue);
+}
+
+/* THIRD CONTAINER */
+article:nth-child(3) {
+  background-color: var(--White);
+  grid-column: 4; /* setting the position to 4th column first */
+  grid-row: 1 / span 2; /* then setting row span to 2 cells */
+}
+
+article:nth-child(3) .graduate-name,
+article:nth-child(4) .graduate-name {
+  color: var(--VeryDarkGrayishBlue);
+}
+
+article:nth-child(3) .verified-graduate,
+article:nth-child(4) .verified-graduate {
+  color: var(--VeryDarkBlackishBlue);
+  opacity: 0.5;
+}
+
+article:nth-child(3) h2,
+article:nth-child(4) h2 {
+  color: var(--VeryDarkBlackishBlue);
+}
+
+article:nth-child(3) .quoted-text,
+article:nth-child(4) .quoted-text {
+  color: var(--VeryDarkGrayishBlue);
+  opacity: 0.7;
+}
+
+/* FOURTH CONTAINER */
+article:nth-child(4) {
+  background-color: var(--White);
+}
+
+/* FIFTH CONTAINER */
+article:nth-child(5) {
+  background-color: var(--VeryDarkBlackishBlue);
+  grid-column: 2 / 4;
+}
+
+article:nth-child(5) .profile-pic {
+  border: 2px solid var(--ModerateViolet);
+  box-sizing: content-box;
+}
+
+/* GRADUATE BOX STYLING */
+.graduate-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.graduate-name {
+  color: var(--White);
+}
+
+.verified-graduate {
+  color: var(--White);
+  opacity: 0.5;
+}
+
+.profile-pic {
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
+}
+
+/* ATTRIBUTION */
+.attribution {
+  grid-column: 1 / -1;
+}
+
+/* MOBILE */
+@media only screen and (max-width: 600px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 50px;
+    padding: 30px;
+  }
+
+  article:nth-child(3) {
+    order: 1;
+  }
+
+  .quote-img {
+    position: absolute;
+    top: 0;
+    right: 20px;
+  }
+
+  #custom-paragraph {
+    margin-top: 180px;
+  }
+
+  .attribution {
+    order: 2;
+  }
+}
